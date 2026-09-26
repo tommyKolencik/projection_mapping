@@ -1,18 +1,16 @@
-# projection_mapping
+# Projection Mapping
 
-A sensor-driven visual system built around a repurposed, headless Dell running Ubuntu, an Arduino Nano ESP32, and a browser on a MacBook. A TMP102 supplies temperature; a Qwiic button changes the scene or toggles blackout.
-
-**Current milestone:** live sensor-to-browser preview. Physical projector calibration, perspective mapping, and projector testing are not implemented yet. The servo and Ollama are not used by this milestone.
+Built using old headless Dell running Ubuntu, an Arduino Nano ESP32, and a browser on a laptop.
 
 ## Components
 
 | Location | Component | Responsibility |
 | --- | --- | --- |
 | Nano ESP32 | `firmware/sensor_node/sensor_node.ino` | Temperature reads, debounced short/long button gestures, newline-delimited JSON |
-| Dell / Ubuntu | `backend/src/main.cpp` | C++17 serial ingestion, validation, shared scene state, HTTP and WebSockets |
-| MacBook browser | `frontend/` | HTML/CSS dashboard and JavaScript Canvas preview, fullscreen display |
+| Ubuntu  | `backend/src/main.cpp` | C++17 serial ingestion, validation, shared scene state, HTTP and WebSockets |
+| Browser | `frontend/` | HTML/CSS dashboard and JavaScript|
 
-The C++ backend owns scene selection and blackout state. Browsers render that shared state; reconnecting a browser doesn't replay button actions. Visual drawing currently runs in JavaScript. Future perspective-transform calculations are intended to live in C++.
+The C++ backend owns projection selection and blackout state. Browsers render that shared state; reconnecting a browser doesn't replay button actions. Visual drawing currently runs in JavaScript. Future perspective-transform calculations are intended to live in C++.
 
 ## Build on the Dell
 
@@ -94,12 +92,3 @@ python3 tests/integration.py build/projection_backend
 ```
 
 Host tests cannot verify the real sensor wiring or projector output. Verify a short press and long hold on the physical Nano after deployment.
-
-## Next milestones
-
-1. Four-corner calibration UI, C++ homography calculation, and browser texture warp.
-2. Save/load mapping profiles and validate them against a calibration grid.
-3. Projector setup and physical calibration; multi-surface mapping later.
-4. Measured frame rate and event latency, systemd startup, wiring diagram, and demo recording.
-
-Avoid claiming physical projection mapping or measured performance on a resume until those steps have been demonstrated.
