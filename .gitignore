@@ -1,0 +1,17 @@
+# Generated builds
+build/
+**/build/
+*.o
+*.elf
+*.bin
+*.hex
+
+# Local settings and credentials
+.env
+.env.*
+!.env.example
+config/local.json
+
+# Logs and operating-system files
+*.log
+.DS_Store
