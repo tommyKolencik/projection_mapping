@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projection Mapping · Live Studio</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Projection Mapping home"><span class="brand-mark">▧</span> projection_mapping</a>
+      <span id="connection" class="status" role="status">Connecting to backend</span>
+    </header>
+    <section class="intro">
+      <p class="eyebrow">SENSOR-DRIVEN VISUALS / V0.1</p>
+      <h1>A room that responds.</h1>
+      <p class="subtitle">Temperature becomes color. A touch changes the scene.</p>
+    </section>
+    <div class="workspace">
+      <section class="visual-panel" aria-label="Projection preview">
+        <div id="stage" class="stage">
+          <canvas id="visual" aria-label="Animated projection preview"></canvas>
+          <div class="stage-top overlay"><span id="mode">WAITING FOR DATA</span><span>LIVE PREVIEW</span></div>
+          <div class="stage-bottom overlay"><span id="scene-label">01 / Aurora</span><span id="preview-state">Waiting for backend</span></div>
+        </div>
+        <div class="visual-toolbar"><span>Output preview <span class="muted">/ your screen is the test surface</span></span><button id="fullscreen" class="text-button">Fullscreen ↗</button></div>
+      </section>
+      <aside class="controls">
+        <section class="sensor-card">
+          <p class="eyebrow">AMBIENT TEMPERATURE</p>
+          <div class="temperature"><span id="temperature">—</span><span class="unit">°C</span></div>
+          <p id="sensor-status" class="sensor-status">Waiting for the Nano</p>
+          <div class="scale"><span>COOL</span><div class="scale-track"></div><span>WARM</span></div>
+        </section>
+        <section class="control-card">
+          <p class="eyebrow">SCENE CONTROL</p>
+          <h2 id="scene-name">Aurora</h2>
+          <p id="scene-description">Slow ribbons of light shaped by ambient temperature.</p>
+          <button id="next" class="primary" disabled>Next scene <span>→</span></button>
+          <button id="blackout" class="secondary" disabled>Blackout</button>
+          <div class="button-hint"><span id="button-dot" class="dot"></span><span id="button-state">Physical button unavailable</span></div>
+          <p class="hint">Short press: next scene<br>Hold 2 seconds: toggle blackout</p>
+        </section>
+      </aside>
+    </div>
+    <section class="activity">
+      <div><p class="eyebrow">ACTIVITY</p><h2>From sensor to screen.</h2></div>
+      <ol id="events" aria-live="polite"><li><span>Waiting for the first connection</span><time>—</time></li></ol>
+    </section>
+    <footer><span>Nano ESP32 → C++ on Dell → browser</span><span>Calibration is the next milestone.</span></footer>
+  </main>
+</body>
+</html>
